@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beani Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Add Orborn font -->
+  <style>
+    @font-face {
+      font-family: "Orborn";
+      src: url("https://db.onlinewebfonts.com/t/5cec673cf47343d3de00ee310fd513e8.eot");
+      src: url("https://db.onlinewebfonts.com/t/5cec673cf47343d3de00ee310fd513e8.eot?#iefix")format("embedded-opentype"),
+      url("https://db.onlinewebfonts.com/t/5cec673cf47343d3de00ee310fd513e8.woff2")format("woff2"),
+      url("https://db.onlinewebfonts.com/t/5cec673cf47343d3de00ee310fd513e8.woff")format("woff"),
+      url("https://db.onlinewebfonts.com/t/5cec673cf47343d3de00ee310fd513e8.ttf")format("truetype"),
+      url("https://db.onlinewebfonts.com/t/5cec673cf47343d3de00ee310fd513e8.svg#Orborn")format("svg");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      background: white;
+      overflow: hidden;
+    }
+
+    .app {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      width: 760px;
+      height: 480px;
+      transition: filter 0.3s ease-out;
+      cursor: pointer;
+      will-change: transform;
+      opacity: 1;
+      animation: fadeIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      filter: blur(2.5px);
+      transform-origin: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+    }
+
+    .blob::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit;
+      filter: blur(0);
+      opacity: 0;
+      transition: all 0.3s ease-out;
+    }
+
+    /* Pink bean - classic kidney */
+    .blob:nth-child(1) { 
+      transform: scale(0.8) rotate(12deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Green bean - plump kidney */
+    .blob:nth-child(2) { 
+      transform: scale(0.75) rotate(67deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Blue bean - slim kidney */
+    .blob:nth-child(3) { 
+      transform: scale(0.85) rotate(-42deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Purple bean - tall kidney */
+    .blob:nth-child(4) { 
+      transform: scale(0.8) rotate(123deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Yellow bean - wide kidney */
+    .blob:nth-child(5) { 
+      transform: scale(0.78) rotate(-88deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Lavender bean - round kidney */
+    .blob:nth-child(6) { 
+      transform: scale(0.82) rotate(33deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Mint bean - medium kidney */
+    .blob:nth-child(7) { 
+      transform: scale(0.83) rotate(-134deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Rose bean */
+    .blob:nth-child(8) { 
+      transform: scale(0.8) rotate(156deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    /* Extra beans */
+    .blob:nth-child(9) { 
+      transform: scale(0.78) rotate(89deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    .blob:nth-child(10) { 
+      transform: scale(0.73) rotate(-167deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    .blob:nth-child(11) { 
+      transform: scale(0.82) rotate(45deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    .blob:nth-child(12) { 
+      transform: scale(0.76) rotate(-78deg);
+      clip-path: path('M5.99999 156C29.2 9.59998 134.288 -33.4218 202 28C236.943 59.6971 245 104 239 143C226.385 225 313 178 324 301C343.287 516.669 187 491 124 467C67.1113 445.328 -23 339 5.99999 156Z');
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .text-container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 3.5rem;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 3.5rem;
+      backdrop-filter: blur(8px);
+      margin: 0 auto;
+      max-width: 70vw;
+    }
+
+    h1 {
+      font-size: 8.25rem;
+      font-weight: 600;
+      margin: 0;
+      color: #222;
+      letter-spacing: 0.02em;
+      line-height: 0.9;
+      text-transform: lowercase;
+    }
+
+    p {
+      font-size: 2.7rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #666;
+      text-transform: lowercase;
+    }
+
+    .gradient-text {
+      background: linear-gradient(45deg, #FF6060, #60D880, #60A8FF, #B898D8, #FFC060, #A898FF, #60E8C0, #FF98B8);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradient 12s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .floating-text {
+      position: fixed;
+      font-family: 'Comfortaa', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 9999;
+      padding: 0.8rem 1.2rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 0.8rem;
+      text-align: center;
+      width: auto;
+      min-width: 90px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      transform: translate(-50%, -50%);
+    }
+
+    .floating-text span {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 1.5s steps(40, end) forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    .app {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blob-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .text-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hover-text-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .blob:hover {
+      filter: blur(1px);
+    }
+
+    .blob:active {
+      transform: scale(0.98);
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(45deg, #FF6060, #60D880, #60A8FF, #B898D8, #FFC060, #A898FF, #60E8C0, #FF98B8);
+      background-size: 400% 400%;
+      clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+      animation: sparkle 2.5s ease-in-out infinite, gradient 12s ease infinite;
+      opacity: 1;
+      filter: blur(0.8px);
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: scale(0.9) translate(-50%, -50%) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.1) translate(-50%, -50%) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(0.9) translate(-50%, -50%) rotate(0deg);
+        opacity: 0.3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor">
+    <div class="sparkle"></div>
+  </div>
+  <div class="app">
+    <div class="blob-container">
+      <!-- Blobs -->
+      <div class="blob" style="background: linear-gradient(45deg, #FF6060, #FF8080, #FFA0A0, #FFC0C0, #FFD8D8, #FFE8E8, #FFB0B0); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(255, 96, 96, 0.5);" data-text="am i ugly?" data-color="#FF6060"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #60D880, #80E098, #A0E8B0, #C0F0C8, #D8F8E0, #E8FFF0, #90E8A8); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(96, 216, 128, 0.5);" data-text="why did mommy yell at me?" data-color="#60D880"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #60A8FF, #80B8FF, #A0C8FF, #C0D8FF, #D8E8FF, #E8F0FF, #90C8FF); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(96, 168, 255, 0.5);" data-text="is daddy ever coming home?" data-color="#60A8FF"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #B898D8, #C8A8E0, #D8B8E8, #E0C8F0, #E8D8F8, #F0E8FF, #D0B8E8); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(184, 152, 216, 0.5);" data-text="why did she leave me?" data-color="#B898D8"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #FFC060, #FFD080, #FFE0A0, #FFE8C0, #FFF0D8, #FFF8E8, #FFD890); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(255, 192, 96, 0.5);" data-text="do you still love me?" data-color="#FFC060"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #A898FF, #B8A8FF, #C8B8FF, #D8C8FF, #E0D8FF, #E8E0FF, #C0B0FF); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(168, 152, 255, 0.5);" data-text="am i a good enough artist?" data-color="#A898FF"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #60E8C0, #80F0D0, #A0F8E0, #C0FFE8, #D8FFF0, #E8FFF8, #90F8D0); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(96, 232, 192, 0.5);" data-text="i made a new friend today!" data-color="#60E8C0"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #FF98B8, #FFA8C8, #FFB8D8, #FFC8E0, #FFD8E8, #FFE8F0, #FFB0C8); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(255, 152, 184, 0.5);" data-text="is everything going to be ok?" data-color="#FF98B8"></div>
+
+      <!-- Add more beans -->
+      <div class="blob" style="background: linear-gradient(45deg, #FF8888, #FFA0A0, #FFB8B8, #FFD0D0, #FFE8E8, #FFF0F0, #FFB0B0); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(255, 136, 136, 0.5);" data-text="what if no one likes me?" data-color="#FF8888"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #88E8B8, #A0F0C8, #B8F8D8, #D0FFE8, #E8FFF0, #F0FFF8, #A8F8D0); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(136, 232, 184, 0.5);" data-text="let's make a pillow fort!" data-color="#88E8B8"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #88B8FF, #A0C8FF, #B8D8FF, #D0E8FF, #E8F0FF, #F0F8FF, #A8D0FF); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(136, 184, 255, 0.5);" data-text="am i too quiet?" data-color="#88B8FF"></div>
+      <div class="blob" style="background: linear-gradient(45deg, #D888E8, #E0A0F0, #E8B8F8, #F0D0FF, #F8E8FF, #FFF0FF, #E8B0F0); filter: blur(2px); box-shadow: 0 0 8px 4px rgba(216, 136, 232, 0.5);" data-text="i love you so much!" data-color="#D888E8"></div>
+    </div>
+    <div class="floating-text"></div>
+    <!-- Text Container -->
+    <div class="text-container">
+      <h1>beani</h1>
+      <p>heal your <span class="gradient-text">inner child</span></p>
+    </div>
+  </div>
+
+  <script>
+    class Blob {
+      constructor(element, index) {
+        this.element = element;
+        const totalBlobs = 11;
+        const radius = Math.min(window.innerWidth, window.innerHeight) * 0.4;
+        const angle = ((index / totalBlobs) * Math.PI * 2) + (Math.random() * 0.5);
+        
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        const radiusVariation = radius * (0.3 + Math.random() * 0.7);
+        
+        this.x = centerX + Math.cos(angle) * radiusVariation - 400;
+        this.y = centerY + Math.sin(angle) * radiusVariation - 240;
+        
+        const randomOffset = 400;
+        this.x += (Math.random() - 0.5) * randomOffset;
+        this.y += (Math.random() - 0.5) * randomOffset;
+        
+        this.vx = 0;
+        this.vy = 0;
+        
+        this.baseRotation = (angle * 180 / Math.PI) + 90;
+        this.rotation = this.baseRotation;
+        this.baseY = this.y;
+        
+        this.floatOffset = Math.random() * Math.PI * 2;
+        this.floatAmplitude = 120 + Math.random() * 80;
+        this.floatSpeed = 0.008 + Math.random() * 0.02;
+        
+        this.horizontalFloatOffset = Math.random() * Math.PI * 2;
+        this.horizontalFloatAmplitude = 10 + Math.random() * 10;
+        this.horizontalFloatSpeed = 0.002 + Math.random() * 0.005;
+        
+        this.tiltSpeed = 0.002 + Math.random() * 0.005;
+        this.tiltAmplitude = 0.3 + Math.random() * 0.4;
+        this.tiltOffset = Math.random() * Math.PI * 2;
+        
+        this.scale = 0.4 + Math.random() * 0.2;
+        
+        this.textElement = element.querySelector('.hover-text');
+        
+        this.updatePosition();
+      }
+
+      updatePosition() {
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
+        this.element.style.transform = `rotate(${this.rotation}deg) scale(${this.scale})`;
+        this.element.style.opacity = '1';
+        
+        if (this.textElement) {
+          const rect = this.element.getBoundingClientRect();
+          this.textElement.style.left = `${rect.left + rect.width + 20}px`;
+          this.textElement.style.top = `${rect.top + rect.height / 2}px`;
+        }
+      }
+
+      move() {
+        const time = Date.now() / 4000;
+        
+        this.y = this.baseY + Math.sin(time * this.floatSpeed + this.floatOffset) * this.floatAmplitude;
+        
+        this.x += Math.sin(time * this.horizontalFloatSpeed + this.horizontalFloatOffset) * 0.1;
+        
+        const tilt = Math.sin(time * this.tiltSpeed + this.tiltOffset) * this.tiltAmplitude;
+        this.rotation = this.baseRotation + tilt;
+        
+        this.updatePosition();
+      }
+    }
+
+    const blobs = Array.from(document.querySelectorAll('.blob')).map((el, index) => new Blob(el, index));
+
+    function checkCollisions() {
+      for (let i = 0; i < blobs.length; i++) {
+        for (let j = i + 1; j < blobs.length; j++) {
+          const dx = blobs[i].x - blobs[j].x;
+          const dy = blobs[i].y - blobs[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 400) {
+            const nx = dx / distance;
+            const ny = dy / distance;
+
+            const relativeVelocityX = blobs[i].vx - blobs[j].vx;
+            const relativeVelocityY = blobs[i].vy - blobs[j].vy;
+
+            const impulse = 0.004 * (relativeVelocityX * nx + relativeVelocityY * ny) / 2;
+
+            blobs[i].vx -= impulse * nx * 0.1;
+            blobs[i].vy -= impulse * ny * 0.1;
+            blobs[j].vx += impulse * nx * 0.1;
+            blobs[j].vy += impulse * ny * 0.1;
+
+            const overlap = (400 - distance) * 1.1;
+            const separationForce = 0.08;
+            
+            blobs[i].x += nx * overlap * separationForce;
+            blobs[i].y += ny * overlap * separationForce;
+            blobs[j].x -= nx * overlap * separationForce;
+            blobs[j].y -= ny * overlap * separationForce;
+
+            const rotationAmount = 0.08;
+            blobs[i].rotation += (Math.random() - 0.5) * rotationAmount;
+            blobs[j].rotation += (Math.random() - 0.5) * rotationAmount;
+          }
+        }
+      }
+    }
+
+    function animate() {
+      blobs.forEach(blob => blob.move());
+      checkCollisions();
+      requestAnimationFrame(animate);
+    }
+
+    setTimeout(() => {
+      animate();
+    }, 100);
+
+    const floatingText = document.querySelector('.floating-text');
+    const blobElements = document.querySelectorAll('.blob');
+    const customCursor = document.querySelector('.custom-cursor');
+    let lastX = 0;
+    let lastY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = `${e.clientX - 15}px`;
+      customCursor.style.top = `${e.clientY - 15}px`;
+    });
+
+    blobElements.forEach(blob => {
+      blob.addEventListener('mouseenter', (e) => {
+        const text = blob.dataset.text;
+        const color = blob.dataset.color;
+        floatingText.style.color = color;
+        floatingText.innerHTML = `<span>${text}</span>`;
+        floatingText.style.opacity = '1';
+      });
+
+      blob.addEventListener('mousemove', (e) => {
+        floatingText.style.left = `${e.clientX + 20}px`;
+        floatingText.style.top = `${e.clientY}px`;
+      });
+
+      blob.addEventListener('mouseleave', () => {
+        floatingText.style.opacity = '0';
+      });
+    });
+  </script>
+</body>
+</html>
